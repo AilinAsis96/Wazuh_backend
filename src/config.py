@@ -1,5 +1,7 @@
 from decouple import config
 
+##Configs 
+
 class Config: 
     SECRET_KEY= config('SECRET_KEY')
 

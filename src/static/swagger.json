@@ -1,0 +1,259 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Wazuh Test API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "tags": [
+        {
+          "name": "Users",
+          "description": "Search Users"
+        },
+        {
+            "name": "Tasks",
+            "description": "Search Tasks"
+          }  
+      ],
+      "servers": [
+        {
+        "url": "/api"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                    "type":"integer"
+                    },
+                    "name": {
+                    "type": "string"
+                    },
+                    "username": {
+                    "type": "string"
+                    },
+                    "email":{
+                    "type":"string"
+                    },
+                    "address":{
+                    "type": "object",
+                    "properties":{
+                    "lat": {
+                        "type":"string"
+                        },
+                        "lng": {
+                        "type":"string"
+                        }
+                    }
+                    
+                    },
+                    "phone": {
+                    "type": "string"
+                    },
+                    "website":{
+                    "type":"string"
+                    },
+                    "company":{
+                    "type": "object",
+                    "properties":{
+                    "bs": {
+                    "type":"string"
+                    },
+                    "catchPhrase": {
+                    "type":"string"
+                    },
+                    "name":{
+                    "type":"string"
+                    }
+                    }
+                    }
+                }
+            },
+            "Id":{
+                "type" : "integer",
+                "properties" : {
+                    "name" : {
+                        "type" : "integer"
+                    }
+                }
+            },
+            "Tasks":{
+            "type" : "object",
+            "properties" : {
+                "id": {
+                "type":"integer"
+                },
+                "title" : {
+                    "type" : "string"
+                },
+                "user_id":{
+                "type":"integer"
+                },
+                "completed":{
+                "type": "boolean"
+                }
+            }
+        }
+        }
+    },
+    "paths": {
+        "/users": {
+            "get" :{
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get All users",
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Users"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Users"
+                    }
+            }
+            }
+            }
+        },
+        "/users/{id}":{
+
+            "get" :{
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user",
+                "parameters": [{
+                  "name": "id",
+                  "in": "path",
+                  "description": "user id",
+                  "required": true,
+                  "type": "integer",
+                  "schema" : {
+                      "$ref": "#/components/schemas/Id"
+                  }
+                }],
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Users"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Users"
+                    }
+            }
+            }
+            }
+
+        },
+        "/users/{id}/tasks":{
+
+            "get" :{
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get tasks by users",
+                "parameters": [{
+                  "name": "id",
+                  "in": "path",
+                  "description": "user id",
+                  "required": true,
+                  "type": "integer",
+                  "schema" : {
+                      "$ref": "#/components/schemas/Id"
+                  }
+                }],
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Tasks"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Tasks"
+                    }
+            }
+            }
+            }
+
+        },
+        "/tasks": {
+            "get" :{
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get All tasks",
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Tasks"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Tasks"
+                    }
+            }
+            }
+            }
+        },
+        "/tasks/{id}":{
+
+            "get" :{
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get task",
+                "parameters": [{
+                  "name": "id",
+                  "in": "path",
+                  "description": "Task id",
+                  "required": true,
+                  "type": "integer",
+                  "schema" : {
+                      "$ref": "#/components/schemas/Id"
+                  }
+                }],
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Tasks"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Tasks"
+                    }
+            }
+            }
+            }
+
+        }
+    }
+
+  }

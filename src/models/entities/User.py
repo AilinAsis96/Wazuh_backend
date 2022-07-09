@@ -5,7 +5,7 @@ class User():
         self.id=id
         self.username = username
         self.email = email
-        self.adress = adress
+        self.address = address
         self.phone = phone
         self.website = website
         self.company = company
@@ -16,7 +16,7 @@ class User():
             'name':self.name,
             'username': self.username,
             'email':self.email,
-            'adress': self.adress,
+            'address': self.address,
             'phone':self.phone,
             'website':self.website,
             'company':self.company
