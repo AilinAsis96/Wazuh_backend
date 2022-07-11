@@ -27,7 +27,7 @@ SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
     config={'app_name': "Test Wazuh API"}
 )
 
-
+_port = os.environ.get('PORT', 5000)
 
 if __name__ == '__main__':
     app.config.from_object(config['development'])
